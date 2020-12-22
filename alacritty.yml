@@ -1,12 +1,5 @@
-# Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
-# Copyright (c) 2017-present Sven Greb <code@svengreb.de>
-
-# Project:    Nord Alacritty
-# Version:    0.1.0
-# Repository: https://github.com/arcticicestudio/nord-alacritty
-# License:    MIT
-# References:
-#   https://github.com/jwilm/alacritty
+# Alacritty configuration
+# using Gruvbox colors
 
 colors:
   primary:
@@ -34,22 +27,15 @@ colors:
     cyan: '0x8FBCBB'
     white: '0xECEFF4'
 
-# Font configuration (changes require restart)
+# Using JetBrains Mono font family
 font:
-  # The normal (roman) font face to use.
   normal:
-    family:  Fira Code
-    # Style can be specified to pick a specific face.
+    family:  JetBrains Mono
     style: Regular
-
-  # The bold font face
   bold:
-    family: Fira Code
-    # Style can be specified to pick a specific face.
-    # style: Bold
+    family: JetBrains Mono
+    style: Bold
 
-  # The italic font face
   italic:
-    family: Fira Code
-    # Style can be specified to pick a specific face.
-    # style: Italic
+    family: JetBrains Mono
+    style: Italic
