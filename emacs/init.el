@@ -21,7 +21,7 @@
  '(custom-safe-themes
    '("2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
  '(package-selected-packages
-   '(which-key rainbow-delimiters counsel ivy doom-modeline use-package atom-one-dark-theme dracula-theme)))
+   '(ivy-rich which-key rainbow-delimiters counsel ivy doom-modeline use-package atom-one-dark-theme dracula-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,6 +70,9 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
+;; ALL-THE-ICONS
+;; install mandatory icons for doom-modeline
+(use-package all-the-icons) ;; use all-the-icons-install-fonts after installation
 
 ;; IVY
 ;; set up ivy completion
@@ -101,3 +104,20 @@
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.3))
+
+;; IVY-RICH
+;; get addiotional information in ivy listings
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+;; COUNSEL
+;; various completion functions if ivy is installed
+(use-package counsel
+  :bind (("M-x" . counsel-M-x) ;; use better M-x functionality
+	 ("C-x b" . counsel-ibuffer) ;; switching buffers with counsel
+	 ("C-x C-f" . counsel-find-file) ;; using find file with fuzzy find
+	 :map minibuffer-local-map
+	 ("C-r" . counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) ;; hide ^ when searching
