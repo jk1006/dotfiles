@@ -21,7 +21,7 @@
  '(custom-safe-themes
    '("2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
  '(package-selected-packages
-   '(counsel-projectile projectile hydra evil-collection evil general ivy-rich which-key rainbow-delimiters counsel ivy doom-modeline use-package atom-one-dark-theme dracula-theme)))
+   '(rust-mode vterm evil-magit magit counsel-projectile projectile hydra evil-collection evil general ivy-rich which-key rainbow-delimiters counsel ivy doom-modeline use-package atom-one-dark-theme dracula-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -141,7 +141,9 @@
   (jk1006/leader-keys
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme") ;; setting leader keybindings
-    "p" '(projectile-command-map :which-key "projectile")))
+    "p" '(projectile-command-map :which-key "projectile")
+    "f" '(:ignore t :which-key "format")
+    "fr" '(rust-format-buffer :which-key "rust")))
 
 (use-package evil
   :init
@@ -188,6 +190,26 @@
     (setq projectile-project-search-path '("~/personal_workspace")))
   (setq projectile-switch-project-action #'projectile-dired))
 
+;; use counsel-projectile for better options with search-results
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
 
+
+;; MAGIT
+;; better git management
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package evil-magit
+  :after magit)
+
+;; VTERM
+;; best terminal emulator in emacs?
+(use-package vterm
+  :ensure t)
+
+;; RUST-MODE
+;; syntax, formatting
+(use-package rust-mode)
