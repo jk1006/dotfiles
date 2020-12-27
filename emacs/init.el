@@ -47,7 +47,6 @@
 (global-set-key (kbd "<C-down>") 'enlarge-window)
 (global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
-
 ;; set used font
 (set-frame-font "FiraCode Medium 11" nil t)
 
@@ -143,7 +142,9 @@
     "tt" '(counsel-load-theme :which-key "choose theme") ;; setting leader keybindings
     "p" '(projectile-command-map :which-key "projectile")
     "f" '(:ignore t :which-key "format")
-    "fr" '(rust-format-buffer :which-key "rust")))
+    "fr" '(rust-format-buffer :which-key "rust")
+    "o" '(:ignore o :which-key "open")
+    "ot" '(open-vterm-horizontal :which-key "terminal")))
 
 (use-package evil
   :init
@@ -213,3 +214,13 @@
 ;; RUST-MODE
 ;; syntax, formatting
 (use-package rust-mode)
+
+
+;; My functions
+
+;; implement function so that vterm is opened in small horizontal split
+(defun open-vterm-horizontal ()
+  (interactive)
+  (vterm-other-window)
+  (evil-window-move-very-bottom)
+  (evil-window-set-height 15))
