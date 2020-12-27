@@ -144,7 +144,11 @@
     "f" '(:ignore t :which-key "format")
     "fr" '(rust-format-buffer :which-key "rust")
     "o" '(:ignore o :which-key "open")
-    "ot" '(open-vterm-horizontal :which-key "terminal")))
+    "ot" '(open-vterm-horizontal :which-key "terminal")
+    "g" '(:ignore g :which-key "magit")
+    "gc" '(magit-commit :which-key "commit")
+    "gp" '(magit-push :which-key "push")
+    "gs" '(magit-status :which-key "status")))
 
 (use-package evil
   :init
