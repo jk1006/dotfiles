@@ -12,7 +12,11 @@
   (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t)
-
+(setq-default tab-width 4)
+;; auto close parantheses and brackets
+(setq electric-pair-preserve-balance nil)
+;; add directory to load path, that el files can be used
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -21,7 +25,7 @@
  '(custom-safe-themes
    '("2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
  '(package-selected-packages
-   '(rust-mode vterm evil-magit magit counsel-projectile projectile hydra evil-collection evil general ivy-rich which-key rainbow-delimiters counsel ivy doom-modeline use-package atom-one-dark-theme dracula-theme)))
+   '(auto-complete go-mode rust-mode vterm evil-magit magit counsel-projectile projectile hydra evil-collection evil general ivy-rich which-key rainbow-delimiters counsel ivy doom-modeline use-package atom-one-dark-theme dracula-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -143,6 +147,7 @@
     "p" '(projectile-command-map :which-key "projectile")
     "f" '(:ignore t :which-key "format")
     "fr" '(rust-format-buffer :which-key "rust")
+	"fg" '(gofmt :which-key "go")
     "o" '(:ignore o :which-key "open")
     "ot" '(open-vterm-horizontal :which-key "terminal")
     "g" '(:ignore g :which-key "magit")
@@ -219,7 +224,21 @@
 ;; syntax, formatting
 (use-package rust-mode)
 
-
+;; GO-MODE
+;; syntax, formatting for golang
+(use-package go-mode)
+;; additional settings for go autocomplete
+;; copy file /home/julius/go/src/github.com/nsf/gocode/emacs/go-autocomplete.el
+;; into .emacs.d/lisp (load this directory with load path)
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(ac-config-default)
+(add-hook 'before-save-hook 'gofmt-before-save)
+;; AUTO-COMPLETE
+;; auto-completion in buffers
+(use-package auto-complete
+  :config
+  (ac-config-default))
 ;; My functions
 
 ;; implement function so that vterm is opened in small horizontal split
