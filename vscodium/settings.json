@@ -1,0 +1,39 @@
+{
+"vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+	      {
+		            "before": ["<leader>", "v"],
+			          "commands": ["workbench.action.splitEditor"]
+				      },
+				          {
+						        "before": ["<leader>", "c"],
+							      "commands": ["workbench.action.closeActiveEditor"]
+							          },
+								      {
+									            "before": ["<leader>", "p"],
+										          "commands": ["workbench.action.quickOpen"]
+											      },
+
+											          {
+													        "before": ["<leader>", "P"],
+														      "commands": ["workbench.action.showCommands"]
+														          },
+															      {
+																            "before": ["<leader>", "n"],
+																	          "commands": ["workbench.action.toggleSidebarVisibility"]
+																		      },
+																		          {
+																				        "before": ["<leader>", "f"],
+																					      "commands": ["revealInExplorer"]
+																					          },
+																						      {
+																							            "before": ["<leader>", "t"],
+																								          "commands": ["workbench.action.terminal.toggleTerminal"]
+																									      }
+																									        ],
+																										  "editor.defaultFormatter": "esbenp.prettier-vscode",
+																										    "editor.formatOnSave": true,
+																										    "editor.formatOnPaste": true,
+																										    "workbench.colorTheme": "One Dark Pro"
+																										    }
+																										    
