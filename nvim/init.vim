@@ -45,34 +45,20 @@ highlight VertSplit cterm=NONE
   autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
   autocmd BufRead,BufNewFile vimrc.local set filetype=vim
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-" install prettier usiing npm install --global prettier
-Plugin 'prettier/vim-prettier'
-" enable f and t command for more than 1 line
-Plugin 'chrisbra/improvedft'
-" in addition install fzf on your system
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'vimwiki/vimwiki'
-Plugin 'rust-lang/rust.vim'
-Plugin 'mhinz/vim-startify'
-Plugin 'ferrine/md-img-paste.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'chrisbra/improvedft'
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+call plug#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+
 filetype plugin indent on    " require
 
 " let NERDTree show hidden files and directories and line numbers
@@ -86,8 +72,6 @@ let g:airline_theme = 'minimalist'
 
 let g:vimwiki_list = [{'path': '/Users/d068796/pCloud Drive/vimwiki'}]
 tnoremap <Esc> <C-\><C-n>
-nnoremap <C-g> :GFiles<CR>
-nnoremap <C-p> :Files<CR>
 
 " map Leader y and p to copy / paste from clipboard
 nnoremap <Leader>p "*P
@@ -96,7 +80,7 @@ nnoremap <Leader>Y "*Y
 
 nnoremap <Leader>o :Prettier<CR>
 
-
+map <C-p> :GFiles<CR>
 " hotkey for splitting windows
 map <Leader>s :sp<CR>
 map <Leader>v :vs<CR>
@@ -114,14 +98,31 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" YCM shortcuts
-map <Leader>gt :YcmCompleter GoTo<CR>
-map <Leader>fr :YcmCompleter GoToReferences<CR> 
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " map Y to copy rest of line
 map Y y$
 
 filetype plugin on
-set shell=bash\ -i
+set shell=/usr/bin/zsh
 
 map <leader>i :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = '.'
