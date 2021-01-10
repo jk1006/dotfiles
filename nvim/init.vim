@@ -56,6 +56,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 
@@ -85,7 +88,7 @@ map <C-p> :GFiles<CR>
 map <Leader>s :sp<CR>
 map <Leader>v :vs<CR>
 map <Leader>c :q<CR>
-map <Leader>t :terminal<CR>
+map <Leader>t :50sp<CR><C-j>:terminal<CR>i
 
 map <Leader>< :vertical resize +5<CR>
 map <Leader>> :vertical resize -5<CR>
