@@ -66,6 +66,7 @@ Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 
@@ -147,3 +148,6 @@ set shell=/usr/bin/zsh
 
 map <leader>i :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = '.'
+
+let g:vimwiki_list = [{'path': '~/pCloudDrive/vimwiki',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
