@@ -1,6 +1,5 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after         
     let &packpath = &runtimepath                                                
-    source ~/.vimrc  
 set backspace=2  " Backsapce deletes character"
 " always turn on syntax check
 syntax on 
