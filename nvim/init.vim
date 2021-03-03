@@ -1,5 +1,6 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after         
     let &packpath = &runtimepath                                                
+    source ~/.vimrc  
 set backspace=2  " Backsapce deletes character"
 " always turn on syntax check
 syntax on 
@@ -65,10 +66,10 @@ Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'vimwiki/vimwiki'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
-
+colorscheme nord
 filetype plugin indent on    " require
 
 " let NERDTree show hidden files and directories and line numbers
@@ -116,6 +117,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Using lua functions
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>gf <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
