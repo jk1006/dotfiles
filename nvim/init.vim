@@ -58,18 +58,17 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'chrisbra/improvedft'
 Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-colorscheme nord
+colorscheme gruvbox
 filetype plugin indent on    " require
 
 " let NERDTree show hidden files and directories and line numbers
@@ -83,13 +82,23 @@ let g:airline_theme = 'minimalist'
 
 let g:vimwiki_list = [{'path': '/Users/d068796/pCloud Drive/vimwiki'}]
 tnoremap <Esc> <C-\><C-n>
-
 " map Leader y and p to copy / paste from clipboard
 nnoremap <Leader>p "*P
 nnoremap <Leader>y "*y
 nnoremap <Leader>Y "*Y
 
 nnoremap <Leader>o :Prettier<CR>
+
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+
 
 map <C-p> :GFiles<CR>
 " hotkey for splitting windows
@@ -111,11 +120,15 @@ nnoremap <C-l> <C-w>l
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>gf <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" Using lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -140,9 +153,35 @@ nmap <silent> gr <Plug>(coc-references)
 map Y y$
 
 filetype plugin on
-set shell=/usr/bin/zsh
+set shell=/usr/local/bin/zsh
 
+map <leader>i :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = '.'
 
 let g:vimwiki_list = [{'path': '~/pCloudDrive/vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" https://github.com/neoclide/coc.nvim#example-vim-configuration
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" gd - go to definition of word under cursor
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+
+" gi - go to implementation
+nmap <silent> gi <Plug>(coc-implementation)
+
+" gr - find references
+nmap <silent> gr <Plug>(coc-references)
+
+" gh - get hint on whatever's under the cursor
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
