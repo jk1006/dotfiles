@@ -105,7 +105,7 @@ map <C-p> :GFiles<CR>
 map <Leader>s :sp<CR>
 map <Leader>v :vs<CR>
 map <Leader>c :q<CR>
-map <Leader>t :50sp<CR><C-j>:terminal<CR>i
+map <Leader>t :20sp<CR><C-w>j:terminal<CR>i
 
 map <Leader>< :vertical resize +5<CR>
 map <Leader>> :vertical resize -5<CR>
@@ -148,7 +148,7 @@ nmap <silent> gr <Plug>(coc-references)
 map Y y$
 
 filetype plugin on
-set shell=/usr/local/bin/zsh
+set shell=/usr/bin/zsh
 
 map <leader>i :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = '.'
