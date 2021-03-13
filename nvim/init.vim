@@ -64,11 +64,11 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-colorscheme nord
+colorscheme dracula
 filetype plugin indent on    " require
 
 " let NERDTree show hidden files and directories and line numbers
@@ -186,7 +186,11 @@ nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 nnoremap <leader>od :CocDiagnostics<cr>
 
-" enable scrolling in CoC popups
+"cycle through buffers
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>bk :bd<cr>
+"" enable scrolling in CoC popups
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
