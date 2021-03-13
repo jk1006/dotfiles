@@ -30,6 +30,7 @@ set number relativenumber
 set rnu
 set nocompatible              " be iMproved, required
 set clipboard=unnamed " add macos clipboard support
+set autochdir
 filetype off                  " required
 
 " remove bars between vertical splits
@@ -64,11 +65,11 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-colorscheme nord
+colorscheme gruvbox
 filetype plugin indent on    " require
 
 " let NERDTree show hidden files and directories and line numbers
@@ -184,7 +185,11 @@ endfunction
 " cycle through coc errors and warnings
 nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-nnoremap <leader>od :CocDiagnostics<cr>
+nnoremap <leader>q <cmd>CocList diagnostics<cr>
+
+" quickfix with coc
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " enable scrolling in CoC popups
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
