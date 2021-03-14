@@ -30,7 +30,7 @@ set number relativenumber
 set rnu
 set nocompatible              " be iMproved, required
 set clipboard=unnamed " add macos clipboard support
-set autochdir
+set splitbelow
 filetype off                  " required
 
 " remove bars between vertical splits
@@ -65,7 +65,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox', { 'as': 'dracula' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -106,7 +106,7 @@ map <C-p> :GFiles<CR>
 map <Leader>s :sp<CR>
 map <Leader>v :vs<CR>
 map <Leader>c :q<CR>
-map <Leader>t :20sp<CR><C-w>j:terminal<CR>i
+map <Leader>t :10sp<CR><C-w>j:terminal<CR>i
 
 map <Leader>< :vertical resize +5<CR>
 map <Leader>> :vertical resize -5<CR>
@@ -185,11 +185,7 @@ endfunction
 " cycle through coc errors and warnings
 nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-nnoremap <leader>q <cmd>CocList diagnostics<cr>
-
-" quickfix with coc
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+nnoremap <leader>od :CocDiagnostics<cr>
 
 "cycle through buffers
 nnoremap <leader>bn :bn<cr>
