@@ -65,13 +65,14 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'morhetz/gruvbox', { 'as': 'dracula' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-colorscheme gruvbox
 filetype plugin indent on    " require
-
+colorscheme onedark
 " let NERDTree show hidden files and directories and line numbers
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
@@ -185,7 +186,10 @@ endfunction
 " cycle through coc errors and warnings
 nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-nnoremap <leader>od :CocDiagnostics<cr>
+nnoremap <leader>q :CocDiagnostics<cr>
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 "cycle through buffers
 nnoremap <leader>bn :bn<cr>
