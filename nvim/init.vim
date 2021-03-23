@@ -67,11 +67,13 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'gruvbox-community/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+let g:gruvbox_contrast_light = "hard"
 filetype plugin indent on    " require
+set background=light
 colorscheme gruvbox
 " let NERDTree show hidden files and directories and line numbers
 let NERDTreeShowHidden=1
