@@ -68,14 +68,16 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype plugin indent on    " require
-set t_Co=256
-set background=light
-colorscheme gruvbox
+
+set t_Co=256   " This is may or may not needed.
+let g:github_colors_soft = 1
+set background=dark
+colorscheme one
 
 "
 let NERDTreeShowHidden=1
@@ -84,7 +86,7 @@ let NERDTreeShowLineNumbers=1
 " shortcut to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
-let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'one'
 
 let g:vimwiki_list = [{'path': '/Users/d068796/pCloud Drive/vimwiki'}]
 tnoremap <Esc> <C-\><C-n>
