@@ -31,6 +31,7 @@ set rnu
 set nocompatible              " be iMproved, required
 set clipboard=unnamed " add macos clipboard support
 set splitbelow
+set termguicolors
 filetype off                  " required
 
 " remove bars between vertical splits
@@ -67,20 +68,25 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'gruvbox-community/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype plugin indent on    " require
+
+set t_Co=256   " This is may or may not needed.
+let g:github_colors_soft = 1
+set background=light
 colorscheme gruvbox
-" let NERDTree show hidden files and directories and line numbers
+
+"
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 
 " shortcut to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'gruvbox'
 
 let g:vimwiki_list = [{'path': '/Users/d068796/pCloud Drive/vimwiki'}]
 tnoremap <Esc> <C-\><C-n>
@@ -89,20 +95,6 @@ nnoremap <Leader>p "*P
 nnoremap <Leader>y "*y
 nnoremap <Leader>Y "*Y
 
-nnoremap <Leader>o :Prettier<CR>
-
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
-
-map <C-p> :GFiles<CR>
 " hotkey for splitting windows
 map <Leader>s :sp<CR>
 map <Leader>v :vs<CR>
@@ -121,7 +113,6 @@ nnoremap <leader>gf <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -148,24 +139,9 @@ map Y y$
 filetype plugin on
 set shell=/usr/bin/zsh
 
-map <leader>i :call mdip#MarkdownClipboardImage()<CR>
-let g:mdip_imgdir = '.'
-
-let g:vimwiki_list = [{'path': '~/pCloudDrive/vimwiki',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
 " https://github.com/neoclide/coc.nvim#example-vim-configuration
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" gd - go to definition of word under cursor
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-
-" gi - go to implementation
-nmap <silent> gi <Plug>(coc-implementation)
-
-" gr - find references
-nmap <silent> gr <Plug>(coc-references)
 
 " gh - get hint on whatever's under the cursor
 nnoremap <silent> K :call <SID>show_documentation()<CR>
