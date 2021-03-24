@@ -73,9 +73,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype plugin indent on    " require
-
-set t_Co=256   " This is may or may not needed.
-let g:github_colors_soft = 1
+set t_Co=256
 set background=light
 colorscheme gruvbox
 
