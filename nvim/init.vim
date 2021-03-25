@@ -70,6 +70,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 filetype plugin indent on    " require
@@ -88,7 +90,6 @@ map <C-n> :NERDTreeToggle<CR>
 
 let g:airline_theme = 'one'
 
-let g:vimwiki_list = [{'path': '/Users/d068796/pCloud Drive/vimwiki'}]
 tnoremap <Esc> <C-\><C-n>
 " map Leader y and p to copy / paste from clipboard
 nnoremap <Leader>p "*P
