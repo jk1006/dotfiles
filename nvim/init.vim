@@ -103,14 +103,6 @@ map <Leader>+ :resize +5<CR>
 map <Leader>- :resize -5<CR>
 
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>gf <cmd>Telescope git_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -134,13 +126,24 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>gf <cmd>Telescope git_files<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>gr <cmd>Telescope lsp_references<cr>
+nnoremap <leader>ca <cmd>Telescope lsp_code_actions<cr>
+nnoremap <leader>wd <cmd>Telescope lsp_workspace_diagnostics<cr>
+nnoremap <leader>gd <cmd>Telescope lsp_definitions<cr>
+nnoremap <leader>gi <cmd>Telescope lsp_implementations<cr>
 
 nmap <silent> K :lua vim.lsp.buf.hover()<CR>
 nmap <silent> gd :lua vim.lsp.buf.definition()<CR>
 nmap <silent> gi :lua vim.lsp.buf.implementation()<CR>
 nmap <silent> gr :lua vim.lsp.buf.references()<CR>
-nmap <silent> gr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+
 lua << EOF
 local nvim_lsp = require('lspconfig')
 require'lspconfig'.rust_analyzer.setup{}
