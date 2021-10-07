@@ -1,10 +1,9 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# export PATH=$HOME/bin:/usr/local/bin:/Users/d068796/.nvim-osx64/bin:$PATH
+export PATH=$PATH:/Users/d068796/.nvim-osx64/bin:/Library/PostgreSQL/13/bin:/Users/d068796/.npm/bin:/Users/d068796/.emacs.d/bin:.
 # Path to your oh-my-zsh installation.
-export ZSH="/home/julius/.oh-my-zsh"
+export ZSH="/Users/d068796/.oh-my-zsh"
 setopt nonomatch
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -46,8 +45,6 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -71,8 +68,15 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+plugins=( 
+    # other plugins...
+    zsh-autosuggestions
+    git
+    copydir
+    copyfile
+    dirhistory
+    zsh-vi-mode
+)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -102,3 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias pullno="cd ~/personal_workspace/notes; git pull"
 alias commno="cd ~/personal_workspace/notes; git add -A; git commit"
+alias ca="cargo"
+alias notes="cd ~/personal_workspace/notes; code ."
+alias npdf="~/scripts/notes.sh"
+
