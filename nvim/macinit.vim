@@ -65,7 +65,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
@@ -75,8 +75,8 @@ filetype plugin indent on    " require
 
 set t_Co=256   " This is may or may not needed.
 let g:github_colors_soft = 1
-set background=dark
-colorscheme palenight
+
+colorscheme onedark
 " let NERDTree show hidden files and directories and line numbers
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
@@ -190,6 +190,7 @@ local nvim_lsp = require('lspconfig')
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
+require'lspconfig'.gopls.setup{}
 vim.o.completeopt = "menuone,noselect"
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
