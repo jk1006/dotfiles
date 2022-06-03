@@ -66,8 +66,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'joshdick/onedark.vim'
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+
 call plug#end()
 
 filetype plugin indent on    " require
@@ -81,8 +80,6 @@ colorscheme onedark
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 
-" shortcut to toggle nerdtree
-map <C-n> :NERDTreeToggle<CR>
 
 let g:airline_theme = 'ayu_dark'
 
@@ -183,7 +180,6 @@ map <C-j> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 map <C-k> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 
-autocmd BufNewFile,BufRead *.org setf dotoo " make dotoo work with .org
 
 lua << EOF
 local nvim_lsp = require('lspconfig')
@@ -191,6 +187,7 @@ require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.jdtls.setup{}
 vim.o.completeopt = "menuone,noselect"
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
