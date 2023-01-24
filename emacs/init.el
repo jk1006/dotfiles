@@ -10,7 +10,7 @@
 ;; Set up the visible bell
 (setq visible-bell t)
 
-(set-face-attribute 'default nil :font "Cascadia Code" :height 160)
+(set-face-attribute 'default nil :font "Cascadia Code" :height 170)
 
 (global-display-line-numbers-mode t)
 ;; disable line numbers for some modes
@@ -191,3 +191,7 @@
 
 (setq make-backup-files nil) ; stop creating ~ files
 (setq lsp-signature-auto-activate nil)
+(setq lsp-eldoc-enable-hover nil)
+(setq lsp-ui-sideline-show-code-actions nil)
+(setq lsp-ui-sideline-show-symbol nil)
+(setq lsp-ui-sideline-show-hover nil)
