@@ -10,7 +10,7 @@
 ;; Set up the visible bell
 (setq visible-bell t)
 
-(set-face-attribute 'default nil :font "JetBrains Mono" :height 150)
+(set-face-attribute 'default nil :font "Cascadia Code" :height 160)
 
 (global-display-line-numbers-mode t)
 ;; disable line numbers for some modes
@@ -72,7 +72,7 @@
 (use-package all-the-icons)
 
 (use-package doom-themes
-  :init (load-theme 'doom-gruvbox t))
+  :init (load-theme 'doom-one t))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -117,6 +117,8 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-normal-state-map (kbd "K") 'lsp-ui-doc-toggle)
+  (define-key evil-normal-state-map (kbd "L") 'lsp-ui-sideline-toggle-code-actions)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -185,3 +187,7 @@
 	
 (global-set-key (kbd "C-j") 'next-error)
 (global-set-key (kbd "C-k") 'previous-error)
+
+
+(setq make-backup-files nil) ; stop creating ~ files
+(setq lsp-signature-auto-activate nil)
