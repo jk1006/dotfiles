@@ -10,7 +10,7 @@
 ;; Set up the visible bell
 (setq visible-bell t)
 
-(set-face-attribute 'default nil :font "JetBrains Mono" :height 130)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 150)
 
 (global-display-line-numbers-mode t)
 ;; disable line numbers for some modes
@@ -60,7 +60,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-magit magit counsel-projectile projectile evil-collection evil general counsel ivy-rich which-key rainbow-delimiters doom-themes all-the-icons doom-modeline ivy use-package)))
+   '(company-quickhelp company-quick-help company flycheck lsp-ui lsp-mode rustic evil-magit magit counsel-projectile projectile evil-collection evil general counsel ivy-rich which-key rainbow-delimiters doom-themes all-the-icons doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,7 +72,7 @@
 (use-package all-the-icons)
 
 (use-package doom-themes
-  :init (load-theme 'doom-dracula t))
+  :init (load-theme 'doom-gruvbox t))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -104,7 +104,8 @@
   (rune/leader-keys
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")
-    "p"  '(projectile-command-map :which-key "projectile")))
+    "p"  '(projectile-command-map :which-key "projectile")
+    "l"  '(lsp-mode-map :which-key "lsp")))
 
 (use-package evil
   :init
@@ -149,5 +150,38 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-(use-package evil-magit
-  :after magit)
+(use-package rustic)
+
+(use-package lsp-mode
+  :ensure
+  :commands lsp
+  :custom
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+
+(use-package flycheck :ensure)
+
+(use-package company
+  :ensure
+  :bind
+  (:map company-active-map
+	("C-n". company-select-next)
+	("C-p". company-select-previous))
+  (:map company-mode-map
+	("<tab>". tab-indent-or-complete)
+	("TAB". tab-indent-or-complete)))
+	
+(global-set-key (kbd "C-j") 'next-error)
+(global-set-key (kbd "C-k") 'previous-error)
