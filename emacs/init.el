@@ -72,7 +72,7 @@
 (use-package all-the-icons)
 
 (use-package doom-themes
-  :init (load-theme 'doom-one t))
+  :init (load-theme 'doom-palenight t))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -105,7 +105,8 @@
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")
     "p"  '(projectile-command-map :which-key "projectile")
-    "l"  '(lsp-mode-map :which-key "lsp")))
+    "l"  '(:ignore l :which-key "lsp")
+    "lf" '(lsp-format-buffer :which-key "format buffer")))
 
 (use-package evil
   :init
@@ -195,3 +196,13 @@
 (setq lsp-ui-sideline-show-code-actions nil)
 (setq lsp-ui-sideline-show-symbol nil)
 (setq lsp-ui-sideline-show-hover nil)
+
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-up-directory
+    "l" 'dired-single-buffer))
