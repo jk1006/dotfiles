@@ -206,3 +206,22 @@
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-up-directory
     "l" 'dired-single-buffer))
+
+
+(use-package tide :ensure t)
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+
+  (company-mode +1))
+
+
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+	  (lambda ()
+	    (when (string-equal "tsx" (file-name-extension buffer-file-name))
+	      (setup-tide-mode))))
