@@ -95,7 +95,6 @@ nnoremap <Leader>Y "*Y
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 
-nnoremap <Leader>o :Prettier<CR>
 
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -154,7 +153,7 @@ nmap <silent> gr <Plug>(coc-references)
 map Y y$
 
 filetype plugin on
-set shell=/usr/local/bin/zsh
+set shell=/usr/bin/zsh
 
 let g:mdip_imgdir = '.'
 
@@ -181,7 +180,7 @@ nnoremap <silent>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 map <C-j> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 map <C-k> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>f <cmd>lua vim.lsp.buf.format()<CR>
 
 autocmd BufNewFile,BufRead *.org setf dotoo " make dotoo work with .org
 

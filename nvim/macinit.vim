@@ -65,12 +65,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug 'joshdick/onedark.vim'
-Plug 'mfussenegger/nvim-jdtls'
-Plug 'mfussenegger/nvim-dap'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'vim-test/vim-test'
-Plug 'mfussenegger/nvim-jdtls'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 filetype plugin indent on    " require
@@ -78,17 +75,25 @@ filetype plugin indent on    " require
 
 set t_Co=256   " This is may or may not needed.
 let g:github_colors_soft = 1
+set background=dark
+colorscheme palenight
+" let NERDTree show hidden files and directories and line numbers
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
 
-colorscheme onedark
+" shortcut to toggle nerdtree
+map <C-n> :NERDTreeToggle<CR>
 
 let g:airline_theme = 'ayu_dark'
-let test#strategy = "neovim"
 
 tnoremap <Esc> <C-\><C-n>
 " map Leader y and p to copy / paste from clipboard
 nnoremap <Leader>p "*P
 nnoremap <Leader>y "*y
 nnoremap <Leader>Y "*Y
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
 
 nnoremap <Leader>o :Prettier<CR>
 
@@ -101,26 +106,18 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
 
 " hotkey for splitting windows
 map <Leader>s :sp<CR>
 map <Leader>v :vs<CR>
 map <Leader>c :q<CR>
-map <Leader>ot :10sp<CR><C-w>j:terminal<CR>i
+map <Leader>t :10sp<CR><C-w>j:terminal<CR>i
 
 map <Leader>< :vertical resize +5<CR>
 map <Leader>> :vertical resize -5<CR>
 map <Leader>+ :resize +5<CR>
 map <Leader>- :resize -5<CR>
 
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set foldlevel=99
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -147,6 +144,11 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " map Y to copy rest of line
 map Y y$
@@ -174,21 +176,20 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 nmap <silent> K :lua vim.lsp.buf.hover()<CR>
 nmap <silent> gd :lua vim.lsp.buf.definition()<CR>
 nmap <silent> gi :lua vim.lsp.buf.implementation()<CR>
-nmap <silent> gr :Telescope lsp_references<CR>
+nmap <silent> gr :lua vim.lsp.buf.references()<CR>
 nnoremap <silent>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-map <C-j> <cmd>lua vim.diagnostic.goto_next()<CR>
-map <C-k> <cmd>lua vim.diagnostic.goto_prev()<CR>
+map <C-j> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+map <C-k> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 
+autocmd BufNewFile,BufRead *.org setf dotoo " make dotoo work with .org
 
 lua << EOF
 local nvim_lsp = require('lspconfig')
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.jdtls.setup{}
 vim.o.completeopt = "menuone,noselect"
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -203,6 +204,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
@@ -227,17 +230,5 @@ require'compe'.setup {
     nvim_lsp = true;
     nvim_lua = true;
   };
-
 }
-  require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-
 EOF
