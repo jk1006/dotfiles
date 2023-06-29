@@ -7,10 +7,9 @@
 
 (menu-bar-mode -1)            ; Disable the menu bar
 
-;; Set up the visible bell
-(setq visible-bell t)
+;; Set up the visible bell (setq visible-bell t)
 
-(set-face-attribute 'default nil :font "Cascadia Code" :height 170)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 170)
 
 (global-display-line-numbers-mode t)
 ;; disable line numbers for some modes
@@ -60,7 +59,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company-quickhelp company-quick-help company flycheck lsp-ui lsp-mode rustic evil-magit magit counsel-projectile projectile evil-collection evil general counsel ivy-rich which-key rainbow-delimiters doom-themes all-the-icons doom-modeline ivy use-package)))
+   '(tide company-quickhelp company-quick-help company flycheck lsp-ui lsp-mode rustic evil-magit magit counsel-projectile projectile evil-collection evil general counsel ivy-rich which-key rainbow-delimiters doom-themes all-the-icons doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -106,7 +105,10 @@
     "tt" '(counsel-load-theme :which-key "choose theme")
     "p"  '(projectile-command-map :which-key "projectile")
     "l"  '(:ignore l :which-key "lsp")
-    "lf" '(lsp-format-buffer :which-key "format buffer")))
+    "lf" '(lsp-format-buffer :which-key "format buffer")
+    "o"  '(:ignore o :which-key "org")
+    "oa"  '(org-agenda :which-key "agenda")
+    "oy" '(org-yank :which.key "yank")))
 
 (use-package evil
   :init
