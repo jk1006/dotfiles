@@ -9,7 +9,7 @@
 
 ;; Set up the visible bell (setq visible-bell t)
 
-(set-face-attribute 'default nil :font "JetBrains Mono" :height 170)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 140)
 
 (global-display-line-numbers-mode t)
 ;; disable line numbers for some modes
@@ -58,8 +58,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ispell-dictionary nil)
  '(package-selected-packages
-   '(tide company-quickhelp company-quick-help company flycheck lsp-ui lsp-mode rustic evil-magit magit counsel-projectile projectile evil-collection evil general counsel ivy-rich which-key rainbow-delimiters doom-themes all-the-icons doom-modeline ivy use-package)))
+   '(elfeed tide company-quickhelp company-quick-help company flycheck lsp-ui lsp-mode rustic evil-magit magit counsel-projectile projectile evil-collection evil general counsel ivy-rich which-key rainbow-delimiters doom-themes all-the-icons doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -227,3 +228,18 @@
 	  (lambda ()
 	    (when (string-equal "tsx" (file-name-extension buffer-file-name))
 	      (setup-tide-mode))))
+
+  ;; Configure Elfeed
+  (use-package elfeed
+    :ensure t
+    :config
+    (setq elfeed-db-directory (expand-file-name "elfeed" user-emacs-directory)
+          elfeed-show-entry-switch 'display-buffer)
+    :bind
+    ("C-x w" . elfeed ))
+
+(setq elfeed-feeds
+      '("https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+	"https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
+	"https://hnrss.org/frontpage"
+        ))
