@@ -3,6 +3,7 @@
 export PATH=$PATH:/Users/d068796/.nvim-osx64/bin:/Library/PostgreSQL/13/bin:/Users/d068796/.npm/bin:/Users/d068796/.emacs.d/bin:.
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/d068796/.oh-my-zsh"
+export EDITOR="nvim"
 setopt nonomatch
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -104,9 +105,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias pullno="cd ~/personal_workspace/notes; git pull"
-alias commno="cd ~/personal_workspace/notes; git add -A; git commit"
 alias ca="cargo"
 alias notes="cd ~/personal_workspace/notes; code ."
 alias npdf="~/scripts/notes.sh"
 
+alias cat="bat"
+alias ls="exa"
+source /usr/share/fzf/shell/key-bindings.zsh
