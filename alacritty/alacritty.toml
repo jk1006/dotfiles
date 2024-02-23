@@ -1,26 +1,53 @@
 [colors.bright]
-black = "0x5c6370"
-blue = "0x61afef"
-cyan = "0x56b6c2"
-green = "0x98c379"
-magenta = "0xc678dd"
-red = "0xe06c75"
-white = "0xffffff"
-yellow = "0xd19a66"
+black = "#4c566a"
+blue = "#81a1c1"
+cyan = "#8fbcbb"
+green = "#a3be8c"
+magenta = "#b48ead"
+red = "#bf616a"
+white = "#eceff4"
+yellow = "#ebcb8b"
+
+[colors.cursor]
+cursor = "#d8dee9"
+text = "#2e3440"
+
+[colors.dim]
+black = "#373e4d"
+blue = "#68809a"
+cyan = "#6d96a5"
+green = "#809575"
+magenta = "#8c738c"
+red = "#94545d"
+white = "#aeb3bb"
+yellow = "#b29e75"
 
 [colors.normal]
-black = "0x1e2127"
-blue = "0x61afef"
-cyan = "0x56b6c2"
-green = "0x98c379"
-magenta = "0xc678dd"
-red = "0xe06c75"
-white = "0xabb2bf"
-yellow = "0xd19a66"
+black = "#3b4252"
+blue = "#81a1c1"
+cyan = "#88c0d0"
+green = "#a3be8c"
+magenta = "#b48ead"
+red = "#bf616a"
+white = "#e5e9f0"
+yellow = "#ebcb8b"
 
 [colors.primary]
-background = "0x1e2127"
-foreground = "0xabb2bf"
+background = "#2e3440"
+dim_foreground = "#a5abb6"
+foreground = "#d8dee9"
+
+[colors.search.matches]
+background = "#88c0d0"
+foreground = "CellBackground"
+
+[colors.selection]
+background = "#4c566a"
+text = "CellForeground"
+
+[colors.vi_mode_cursor]
+cursor = "#d8dee9"
+text = "#2e3440"
 
 [env]
 TERM = "alacritty-direct"
@@ -28,21 +55,24 @@ TERM = "alacritty-direct"
 [font]
 size = 16
 
+[font.offset]
+y = 4
+
 [font.bold]
-family = "JetBrains Mono"
-style = "Bold"
+family = "MonaspaceArgon"
+style = "SemiBold"
 
 [font.bold_italic]
-family = "JetBrains Mono"
-style = "Bold Italic"
+family = "MonaspaceArgon"
+style = "Bold"
 
 [font.italic]
-family = "JetBrains Mono"
-style = "Italic"
+family = "MonaspaceArgon"
+style = "Medium"
 
 [font.normal]
-family = "JetBrains Mono"
-style = "Regular"
+family = "MonaspaceArgon"
+style = "Medium"
 
 [shell]
 program = "/usr/bin/zsh"
