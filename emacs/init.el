@@ -229,17 +229,4 @@
 	    (when (string-equal "tsx" (file-name-extension buffer-file-name))
 	      (setup-tide-mode))))
 
-  ;; Configure Elfeed
-  (use-package elfeed
-    :ensure t
-    :config
-    (setq elfeed-db-directory (expand-file-name "elfeed" user-emacs-directory)
-          elfeed-show-entry-switch 'display-buffer)
-    :bind
-    ("C-x w" . elfeed ))
 
-(setq elfeed-feeds
-      '("https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
-	"https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
-	"https://hnrss.org/frontpage"
-        ))
