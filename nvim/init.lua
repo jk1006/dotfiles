@@ -4,11 +4,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-local set = vim.opt -- set options
-set.tabstop = 4
-set.softtabstop = 4
-set.shiftwidth = 4
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -236,7 +231,7 @@ vim.wo.signcolumn = 'yes'
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
-vim.terminal = 'screen-256color'
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
@@ -576,6 +571,12 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+  command = 'silent! EslintFixAll',
+  group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
