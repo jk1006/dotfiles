@@ -53,26 +53,30 @@ text = "#2e3440"
 TERM = "alacritty-direct"
 
 [font]
-size = 16
+size = 15
 
 [font.offset]
 y = 4
 
 [font.bold]
-family = "MonaspaceArgon"
+family = "Fira Code"
 style = "SemiBold"
 
 [font.bold_italic]
-family = "MonaspaceArgon"
+family = "Fira Code"
 style = "Bold"
 
 [font.italic]
-family = "MonaspaceArgon"
-style = "Medium"
+family = "Fira Code"
+style = "Italic"
 
 [font.normal]
-family = "MonaspaceArgon"
+family = "Fira Code"
 style = "Medium"
 
 [shell]
-program = "/usr/bin/zsh"
+program = "/opt/homebrew/bin/zsh"
+
+[window.padding]
+x = 12
+y = 12
