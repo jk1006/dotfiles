@@ -72,7 +72,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -114,7 +114,7 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'catppuccin/nvim',
     opts = {
       options = {
         style = 'cool',
@@ -122,7 +122,7 @@ require('lazy').setup({
     },
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'catppuccin-frappe'
     end,
   },
 
@@ -138,7 +138,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
@@ -192,7 +192,7 @@ require('lazy').setup({
   },
 
   {
-   'github/copilot.vim',
+    'github/copilot.vim',
   },
 
 }, {})
@@ -315,7 +315,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -473,11 +473,6 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 
 
-require('onedark').setup {
-    style = 'cool'
-}
-require('onedark').load()
-
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -553,6 +548,13 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -574,6 +576,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'silent! EslintFixAll',
   group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
 })
+
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
