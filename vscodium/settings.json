@@ -1,10 +1,74 @@
 {
-  "workbench.colorTheme": "Atom One Dark",
-  "editor.fontFamily": "SF Mono",
-  "editor.fontWeight": "600",
-  "terminal.integrated.fontFamily": "SF Mono",
-  "terminal.integrated.fontWeight": "600",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true
+    "workbench.colorTheme": "Catppuccin Frappé",
+    "editor.fontFamily": "Cascadia Code",
+    "editor.fontSize": 14,
+    "editor.fontWeight": "350",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "sap.ux.applicationModeler.disableMigrationPrompt": true,
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/D068796/.config/nvim/init.lua",
+    "haskell.manageHLS": "GHCup",
+    "[haskell]": {
+        "editor.defaultFormatter": "haskell.haskell"
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "eslint.format.enable": true,
+    "redhat.telemetry.enabled": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "editor.folding": false,
+    "workbench.statusBar.visible": false,
+    "workbench.sideBar.location": "right",
+    "workbench.editor.showTabs": "none",
+    "editor.guides.indentation": false,
+    "workbench.tree.renderIndentGuides": "none",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "workbench.fontAliasing": "auto",
+    "catppuccin.italicComments": false,
+    "catppuccin.italicKeywords": false,
+    "editor.semanticTokenColorCustomizations": {
+        "[Default Dark+]": {
+            "rules": {
+                "property.mandatory:xml": {
+                    "bold": true
+                },
+                "string.i18n:xml": {
+                    "italic": true
+                }
+            }
+        },
+        "[Default Light+]": {
+            "rules": {
+                "property.mandatory:xml": {
+                    "bold": true
+                },
+                "string.i18n:xml": {
+                    "italic": true
+                }
+            }
+        },
+        "[Default High Contrast]": {
+            "rules": {
+                "property.mandatory:xml": {
+                    "bold": true
+                },
+                "string.i18n:xml": {
+                    "italic": true
+                }
+            }
+        }
+    },
+    "update.mode": "manual",
+    "[xml]": {
+        "editor.defaultFormatter": "SAPSE.sap-ux-annotation-modeler-extension"
+    }
+   
 }

@@ -1,24 +1,11 @@
-// Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaults
 [
-  {
-    "key": "alt+v",
-    "command": "workbench.action.splitEditor"
-  },
-  {
-    "key": "alt+s",
-    "command": "workbench.action.splitEditorOrthogonal"
-  },
-  {
-    "key": "ctrl+[Backquote]",
-    "command": "workbench.action.terminal.toggleTerminal"
-  },
-  {
-    "key": "ctrl+shift+[Equal]",
-    "command": "-workbench.action.terminal.toggleTerminal"
-  },
-  {
-    "key": "ctrl+k ctrl+1",
-    "command": "-editor.foldLevel1",
-    "when": "editorTextFocus && foldingEnabled"
-  }
+    {
+        "key": "ctrl+cmd+b",
+        "command": "workbench.action.activityBarLocation.default"
+    },
+    {
+        "key": "ctrl+shift+cmd+b",
+        "command": "workbench.action.activityBarLocation.hide"
+    }
 ]
